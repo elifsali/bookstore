@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookStore.BL.Intefaces
+﻿namespace BookStore.BL.Intefaces
 {
-    internal interface iAuthorServices
+    public  interface IAuthorService
     {
+        List<Author> GetAll();
+
+        Author GetById(int id);
+
+        void Add(Author author);
+
+        void Remove(int id);
     }
 }
