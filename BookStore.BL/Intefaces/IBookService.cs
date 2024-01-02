@@ -11,5 +11,6 @@ namespace BookStore.BL.Intefaces
         void Add(Book book);
 
         void Remove(int id);
+        List<Book> GetAllBooksByAuthorId(int authorId);
     }
 }
