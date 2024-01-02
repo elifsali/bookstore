@@ -29,10 +29,12 @@ namespace BookStore.Controllers
             return _bookService.GetAll();
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public void Add([FromBody] Book book) 
-        { 
+        {
+            if (book == null) return; 
             _bookService.Add(book);
+            
         }
 
         [HttpDelete]

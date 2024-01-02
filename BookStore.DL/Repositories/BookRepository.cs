@@ -1,12 +1,6 @@
-﻿using BookStore.BL;
-using BookStore.DL.Interfaces;
+﻿using BookStore.DL.Interfaces;
 using BookStore.DL.MemoryDb;
 using BookStore.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.DL.Repositories
 {
@@ -29,5 +23,12 @@ namespace BookStore.DL.Repositories
             var book = GetById(id);
             InMemoryDb.BookData.Remove(book);
         }
+
+        public List<Book> GetAllBooksByAuthorId(int id)
+        {
+            var result = InMemoryDb.BookData.Where(b => b.AuthorId == id).ToList();
+            return result;
+        }
+
     }
 }

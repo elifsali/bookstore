@@ -38,5 +38,12 @@ namespace BookStore.BL.Services
         {
             _bookRepository.Remove(id);
         }
+
+        public List<Book>GetAllBooksByAuthorId(int authorId)
+        {
+            return _bookRepository.GetAllBooksByAuthorId(authorId);
+        }
+
+      
     }
 }
