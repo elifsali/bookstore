@@ -3,7 +3,11 @@ using BookStore.BL.Services;
 using BookStore.DL.Interfaces;
 using BookStore.DL.NewFolder;
 using BookStore.DL.Repositories;
+using BookStore.HealthChecks;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BookStore
 {
@@ -26,8 +30,12 @@ namespace BookStore
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+            builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
 
+            builder.Services.AddHealthChecks().AddCheck<CustomHealthCheck>(nameof(CustomHealthCheck));
+
+            var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -41,6 +49,8 @@ namespace BookStore
 
 
             app.MapControllers();
+
+            app.MapHealthChecks("/healthz");
 
             app.Run();
         }
