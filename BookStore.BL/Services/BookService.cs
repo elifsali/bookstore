@@ -44,6 +44,12 @@ namespace BookStore.BL.Services
             return _bookRepository.GetAllBooksByAuthorId(authorId);
         }
 
+        public int TestCalculation(int number)
+        {
+            var books = _bookRepository.GetAll();
+            return books.Count() + number;
+
+        }
       
     }
 }
